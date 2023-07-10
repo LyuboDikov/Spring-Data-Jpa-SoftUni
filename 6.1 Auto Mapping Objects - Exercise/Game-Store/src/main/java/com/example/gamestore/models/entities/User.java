@@ -10,14 +10,13 @@ public class User extends BaseEntity {
     private String email;
     private String password;
     private String fullName;
-    private Role role;
     private Set<Game> games;
 
 
     public User() {
     }
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column
     public String getEmail() {
         return email;
     }
@@ -26,7 +25,7 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    @Column(name = "password", nullable = false)
+    @Column
     public String getPassword() {
         return password;
     }
@@ -35,22 +34,13 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    @Column(name = "full_name", nullable = false)
+    @Column
     public String getFullName() {
         return fullName;
     }
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    @Enumerated(EnumType.STRING)
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     @ManyToMany
