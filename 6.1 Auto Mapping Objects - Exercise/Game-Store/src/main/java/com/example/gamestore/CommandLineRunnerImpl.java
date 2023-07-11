@@ -1,5 +1,7 @@
 package com.example.gamestore;
 
+import com.example.gamestore.models.dtos.UserRegisterDto;
+import com.example.gamestore.services.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +12,9 @@ import java.io.InputStreamReader;
 public class CommandLineRunnerImpl implements CommandLineRunner {
 
     private final BufferedReader bufferedReader;
-
-    public CommandLineRunnerImpl() {
+    private final UserService userService;
+    public CommandLineRunnerImpl(UserService userService) {
+        this.userService = userService;
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
 
@@ -24,7 +27,9 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
             String[] commands = bufferedReader.readLine().split("\\|");
 
             switch (commands[0]) {
-
+                case "RegisterUser" -> userService
+                        .registerUser(
+                                new UserRegisterDto(commands[1], commands[2], commands[3], commands[4]));
             }
         }
     }
