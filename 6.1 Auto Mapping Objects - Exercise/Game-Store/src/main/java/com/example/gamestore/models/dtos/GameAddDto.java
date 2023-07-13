@@ -3,12 +3,13 @@ package com.example.gamestore.models.dtos;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class GameAddDto {
 
     private String title;
     private BigDecimal price;
-    private Integer size;
+    private Double size;
     private String trailer;
     private String thumbnailURL;
     private String description;
@@ -17,7 +18,7 @@ public class GameAddDto {
     public GameAddDto() {
     }
 
-    public GameAddDto(String title, BigDecimal price, Integer size,
+    public GameAddDto(String title, BigDecimal price, Double size,
                       String trailer, String thumbnailURL, String description, String releaseDate) {
         this.title = title;
         this.price = price;
@@ -49,11 +50,11 @@ public class GameAddDto {
     }
 
     @Positive
-    public Integer getSize() {
+    public Double getSize() {
         return size;
     }
 
-    public void setSize(Integer size) {
+    public void setSize(Double size) {
         this.size = size;
     }
 

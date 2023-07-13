@@ -9,6 +9,8 @@ import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 @Service
@@ -37,5 +39,10 @@ public class GameServiceImpl implements GameService {
         }
 
         Game game = modelMapper.map(gameAddDto, Game.class);
+        game.setReleaseDate(LocalDate.parse(gameAddDto.getReleaseDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+
+        gameRepository.save(game);
+
+        System.out.println("Added game " + gameAddDto.getTitle());
     }
 }
