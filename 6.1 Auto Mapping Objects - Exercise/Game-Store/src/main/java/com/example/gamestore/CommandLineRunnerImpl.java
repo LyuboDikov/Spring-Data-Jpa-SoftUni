@@ -1,21 +1,26 @@
 package com.example.gamestore;
 
+import com.example.gamestore.models.dtos.GameAddDto;
 import com.example.gamestore.models.dtos.UserLoginDto;
 import com.example.gamestore.models.dtos.UserRegisterDto;
+import com.example.gamestore.services.GameService;
 import com.example.gamestore.services.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 
 @Component
 public class CommandLineRunnerImpl implements CommandLineRunner {
 
     private final BufferedReader bufferedReader;
     private final UserService userService;
-    public CommandLineRunnerImpl(UserService userService) {
+    private final GameService gameService;
+    public CommandLineRunnerImpl(UserService userService, GameService gameService) {
         this.userService = userService;
+        this.gameService = gameService;
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
 
@@ -33,6 +38,11 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                                 new UserRegisterDto(commands[1], commands[2], commands[3], commands[4]));
                 case "LoginUser" -> userService
                         .loginUser(new UserLoginDto(commands[1], commands[2]));
+                case "Logout" -> userService
+                        .logout();
+                case "AddGame" -> gameService
+                        .addGame(new GameAddDto(commands[1], new BigDecimal(commands[2]), Integer.parseInt(commands[3]),
+                                commands[4], commands[5], commands[6], commands[7]));
             }
         }
     }

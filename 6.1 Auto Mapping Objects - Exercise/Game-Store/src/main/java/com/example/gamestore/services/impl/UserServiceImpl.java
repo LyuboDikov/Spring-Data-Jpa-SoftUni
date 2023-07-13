@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         }
 
         Set<ConstraintViolation<UserRegisterDto>> violations =
-                validationUtil.violation(userRegisterDto);
+                validationUtil.getViolations(userRegisterDto);
 
         if (!violations.isEmpty()) {
             violations
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void loginUser(UserLoginDto userLoginDto) {
-        Set<ConstraintViolation<UserLoginDto>> violations = validationUtil.violation(userLoginDto);
+        Set<ConstraintViolation<UserLoginDto>> violations = validationUtil.getViolations(userLoginDto);
 
         if (!violations.isEmpty()) {
             violations.stream()
@@ -70,5 +70,15 @@ public class UserServiceImpl implements UserService {
         }
 
         loggedInUser = user;
+    }
+
+    @Override
+    public void logout() {
+        if (loggedInUser == null) {
+            System.out.println("Cannot log out. No user was logged in.");
+        } else {
+            loggedInUser = null;
+        }
+
     }
 }
