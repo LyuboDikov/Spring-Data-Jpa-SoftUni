@@ -10,6 +10,7 @@ public class User extends BaseEntity {
     private String email;
     private String password;
     private String fullName;
+    private Boolean isAdmin;
     private Set<Game> games;
 
 
@@ -50,5 +51,14 @@ public class User extends BaseEntity {
 
     public void setGames(Set<Game> games) {
         this.games = games;
+    }
+
+    @Column(name = "is_admin")
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }

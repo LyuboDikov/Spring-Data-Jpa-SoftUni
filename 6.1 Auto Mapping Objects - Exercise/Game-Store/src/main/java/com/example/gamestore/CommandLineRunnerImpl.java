@@ -1,5 +1,6 @@
 package com.example.gamestore;
 
+import com.example.gamestore.models.dtos.UserLoginDto;
 import com.example.gamestore.models.dtos.UserRegisterDto;
 import com.example.gamestore.services.UserService;
 import org.springframework.boot.CommandLineRunner;
@@ -30,6 +31,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
                 case "RegisterUser" -> userService
                         .registerUser(
                                 new UserRegisterDto(commands[1], commands[2], commands[3], commands[4]));
+                case "LoginUser" -> userService
+                        .loginUser(new UserLoginDto(commands[1], commands[2]));
             }
         }
     }

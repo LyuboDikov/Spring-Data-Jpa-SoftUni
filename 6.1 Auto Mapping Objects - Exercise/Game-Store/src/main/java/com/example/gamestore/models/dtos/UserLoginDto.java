@@ -2,23 +2,18 @@ package com.example.gamestore.models.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
-public class UserRegisterDto {
+public class UserLoginDto {
 
     private String email;
     private String password;
-    private String confirmPassword;
-    private String fullName;
 
-    public UserRegisterDto() {
+    public UserLoginDto() {
     }
 
-    public UserRegisterDto(String email, String password, String confirmPassword, String fullName) {
+    public UserLoginDto(String email, String password) {
         this.email = email;
         this.password = password;
-        this.confirmPassword = confirmPassword;
-        this.fullName = fullName;
     }
 
     @Email(message = "Please enter valid email!")
@@ -38,22 +33,5 @@ public class UserRegisterDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    @Size(min = 2)
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 }
